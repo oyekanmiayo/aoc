@@ -88,7 +88,7 @@ func day4Part1() {
 	// Matrices Row and Col Count
 	// [i][0] = rows for matrix with id i
 	// [i][0][2] = count of values found for matrix with id i at row 2
-	// [i][1] = rows for matrix with id j
+	// [i][1] = cols for matrix with id j
 	// [i][1][2] = count of values found for matrix with id i at col 2
 	mRowColCnt := make([][][]int, len(matrices))
 	for id := range mRowColCnt {
@@ -214,7 +214,7 @@ func day4Part2() {
 	// Matrices Row and Col Count
 	// [i][0] = rows for matrix with id i
 	// [i][0][2] = count of values found for matrix with id i at row 2
-	// [i][1] = rows for matrix with id j
+	// [i][1] = cols for matrix with id j
 	// [i][1][2] = count of values found for matrix with id i at col 2
 	mRowColCnt := make([][][]int, len(matrices))
 	for id := range mRowColCnt {
