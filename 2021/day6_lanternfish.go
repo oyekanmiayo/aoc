@@ -111,17 +111,23 @@ func day6Part2DP(lanternFish []int) int64 {
 	return count
 }
 
-func findCountAtGivenDay(
-	givenDay, currentDay, daysToZeroForFish int,
-	dp map[int]map[int]int64) int64 {
+// 3,4,3,1,2
+// 5, 0, 3
+// 0 + 3 + 1 => day 4: 6, 8
+
+// map[0][3] = number of fish that have been spawned by fish with an internal timer of 3
+// map[4][6] =
+
+// 256, 4, 6 = 4 + 6 + 1 = 11
+func findCountAtGivenDay(givenDay, currentDay, internalTimer int, dp map[int]map[int]int64) int64 {
 	_, dayExists := dp[currentDay]
 	if !dayExists {
 		dp[currentDay] = make(map[int]int64)
 	}
 
-	_, daysToZeroExists := dp[currentDay][daysToZeroForFish]
+	_, daysToZeroExists := dp[currentDay][internalTimer]
 	if !daysToZeroExists {
-		nextValidDay := currentDay + daysToZeroForFish + 1
+		nextValidDay := currentDay + internalTimer + 1
 
 		if nextValidDay > givenDay {
 			return 1
@@ -135,10 +141,10 @@ func findCountAtGivenDay(
 		count += findCountAtGivenDay(givenDay, nextValidDay, 6, dp)
 		count += findCountAtGivenDay(givenDay, nextValidDay, 8, dp)
 
-		dp[currentDay][daysToZeroForFish] = count
+		dp[currentDay][internalTimer] = count
 	}
 
-	return dp[currentDay][daysToZeroForFish]
+	return dp[currentDay][internalTimer]
 }
 
 func main() {
